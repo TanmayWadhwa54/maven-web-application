@@ -3,7 +3,7 @@ pipeline {
         stages {
 	        stage("SCM") {
                      steps {
-                            git 'https://github.com/technet001/maven-web-application.git'
+                            git 'https://github.com/TanmayWadhwa54/maven-web-application.git'
                             }
                           }
 
@@ -15,21 +15,21 @@ pipeline {
                 stage("build-image") {
                      steps {
                              sh 'sudo docker build -t java-repo1:$BUILD_TAG .'
-                             sh 'sudo docker tag java-repo1:$BUILD_TAG technetgalaxy/pipeline-java1:$BUILD_TAG'
+                             sh 'sudo docker tag java-repo1:$BUILD_TAG tanmaywadhwa54/pipeline-java1:$BUILD_TAG'
                              }
                 }
                 stage("dockerlogin") {
                      steps { 
-		             withCredentials([string(credentialsId: 'dockerhub_pass', variable: 'dockerhub_pass_var')]) {
-			     sh 'sudo docker login -u technetgalaxy -p ${dockerhub_pass_var}'
-			     sh 'sudo docker push technetgalaxy/pipeline-java1:$BUILD_TAG'
+		             withCredentials([string(credentialsId: 'pass', variable: 'pass_var')]) {
+			     sh 'sudo docker login -u tanmaywadhwa54 -p ${pass_var}'
+			     sh 'sudo docker push tanmaywadhwa54/pipeline-java1:$BUILD_TAG'
 			     }
 		     }
 		      
 		}
 		stage("QAT TESTING") {
 		     steps {  
-		          sh 'sudo docker run -dit --name web10tom -p 8090:8080 technetgalaxy/pipeline-java1:$BUILD_TAG'
+		          sh 'sudo docker run -dit --name web100tom -p 8090:8080 tanmaywadhwa54/pipeline-java1:$BUILD_TAG'
                     } 
 	       }
 
