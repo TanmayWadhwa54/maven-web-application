@@ -29,7 +29,7 @@ pipeline {
 		}
 		stage("QAT TESTING") {
 		     steps {  
-		              sh 'sudo docker rm -f $(sudo docker ps -a -q)'
+		              sh 'sudo docker rm -f $(docker ps -a -q)'
 		              sh 'sudo docker run -dit --name web10tom -p 8090:8080 technetgalaxy/pipeline-java1:$BUILD_TAG'
                     } 
 	       }
