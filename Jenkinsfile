@@ -29,7 +29,7 @@ pipeline {
 		}
 		stage("QAT TESTING") {
 		     steps {  
-		              sh 'sudo docker run -dit --name web10tom -p 8090:8080 tanmaywadhwa54/pipeline-java1:$BUILD_TAG'
+		              sh 'sudo docker run -dit --name webtom -p 8090:8080 tanmaywadhwa54/pipeline-java1:$BUILD_TAG'
                     } 
 	       }
 
